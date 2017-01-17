@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var obj={
+				x:1,
+				y:2,
+				o:{
+					o1:1,
+					o2:2,
+					toJSON:function(){
+						return this.o1 + this.o2;
+					}
+				}
+			}
+			console.log(JSON.stringify(obj));
+		
+		</script>
+	</body>
+</html>

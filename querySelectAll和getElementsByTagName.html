@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			// Demo 1
+//			var ul = document.querySelectorAll('ul')[0],
+//				lis = ul.querySelectorAll("li");
+//			for (var i = 0; i < lis.length; i++) {
+//				ul.appendChild(document.createElement("li"));
+//			}
+			// Demo 2
+			var ul = document.getElementsByTagName('ul')[0],
+				lis = ul.getElementsByTagName("li");
+			for (var i = 0; i < lis.length; i++) {
+				ul.appendChild(document.createElement("li"));
+			}
+		</script>
+	</body>
+
+</html>

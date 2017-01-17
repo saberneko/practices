@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+/*		@media screen and (min-width: 360px) {
+			html {
+				font-size:24px;
+			}
+
+			body {
+				font-size: 12px;
+			}
+		}
+		@media screen and (min-width: 400px) {
+			html {
+				font-size:26.666666666666668px;
+			}
+
+			body {
+				font-size: 14px;
+			}
+		}
+		@media screen and (min-width: 480px) {
+    		html {
+       			font-size:32px
+    		}
+
+    		body {
+        		font-size: 15.36px
+    		}
+		}
+		@media screen and (min-width: 720px) {
+		    html {
+		        font-size:48px
+		    }
+
+		    body {
+		        font-size: 23.04px
+		    }
+		}*/
+	</style>
+</head>
+<body>
+	<span>字体大小测试</span>
+	<script type="text/javascript">
+		((doc, win) => {
+			let docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize', /*翻转设备或者改变窗口大小*/
+				recalc = () => {
+					let clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					docEl.style.fontSize = 25 * (clientWidth / 375) + 'px';
+					docEl.style.fontSize = docEl.style.fontSize > 50 ? 50 : docEl.style.fontSize;
+				};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+
+		setTimeout(() => {
+			let pexilToRem = [];
+			for (let i = 1; i < 51; i++){
+				pexilToRem.push({'px':i + 'px', 'rem':i/25 + 'rem'})
+			}
+			console.table(pexilToRem)
+		}, 3000);	
+	</script>	
+</body>
+</html>

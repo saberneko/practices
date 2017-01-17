@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*node.style.display = 'none' 分离出来（封装），用回调函数形式作为参数传入appendDiv方法，即隐藏节点的请求由客户发起,客户并不知道节点何时创建好，于是把隐藏节点的逻辑放在回调函数中，“委托”给appendDiv方法*/
+		var appendDiv = function(callback){
+			for(var i = 0;i<10;i++){
+				var div = document.createElement('div');
+				div.innerHTML = i;
+				document.body.appendChild(div);
+				if(typeof callback === 'function'){
+					callback(div);
+				}
+			}
+		}
+		appendDiv(function(node){
+			node.style.display = 'none';
+		})
+
+	//Array.prototype.sort接受函数当参数，该函数封装了数组元素的排序规则
+		var arr = [1,4,3];
+		arr.sort(function(a,b){
+			return a - b;
+		});
+		console.log(arr);
+
+	//批量注册函数
+		var Type = {};
+		for(var i = 0,type;type = ['String','Array','Number'][i++];){
+			(function(type){
+				Type['is'+type] = function(obj){
+					return Object.prototype.toString.call(obj) === '[object' + type +']';
+				}
+			})(type)
+		};
+		Type.isArray([]);//输出true
+	</script>
+</body>
+</html>

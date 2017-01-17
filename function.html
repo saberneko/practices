@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//按对象中相应的属性排序
+			function getPropoty(propertyName){
+				return function(obj1,obj2){
+					var value1 = obj1[propertyName];
+					var value2 = obj2[propertyName];
+					if(value1<value2){
+						return -1;
+					}else if(value1>value2){
+						return 1;
+					}else{
+						return 0;
+					}
+					
+				}
+			}
+			
+			var data = [{name:"Za",age:28},{name:"Ni",age:30}];
+			data.sort(getPropoty("name"));
+//			data.sort();
+//			alert(data[0].name);
+
+			function outer(){
+				inner();
+			}
+			function inner(){
+				alert(arguments.callee.caller);
+			}
+//			outer();
+			// console.log(outer.toLocaleString());
+			// console.log(outer.toString());
+			// console.log(outer.valueOf());
+		</script>
+	</body>
+</html>

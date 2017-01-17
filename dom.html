@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p> The current date and </p>
+		<p> The current date and time is</p>
+		<p> The current date and time is</p>
+		<p> The current date and time is</p>
+		<p> The current date and time is</p>
+		<p> The current date and time is</p>
+		<script>
+//		document.write("<strong>" + (new Date()) + "</strong>");
+//		sd
+		var nodes = document.getElementsByTagName('p');
+		
+		var getAttr = outputAttributes(nodes);
+		
+		console.log(getAttr);
+		
+		function outputAttributes(element){
+			var pairs = new Array(),
+				attrName,
+				attrValue,
+				i,
+				len;
+				
+				for(i=0,len=element.length;i<len;i++){
+					attrName = element[i].nodeName;
+					attrValue = element[i].innerText;
+					console.log(attrName+" "+attrValue)
+					pairs.push(attrName + '=\"' + attrValue + '\"');
+				}
+				return pairs.join(" ");
+		}
+		
+		
+		function loadScriptString(code){
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			try{
+				script.appendChild(document.createTextNode(code))
+			}catch(ex){
+				script.text=code;
+			}
+			document.body.appendChild(script);
+		}
+		
+		loadScriptString("function sayHi(){alert('hi');}");
+		</script>
+	</body>
+</html>

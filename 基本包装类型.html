@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var obj = new Object("some text");//使用new调用基本包装类型的构造函数
+			console.log(obj instanceof Object);//True;
+			console.log(typeof obj);//object;
+			
+			var value = "25";
+			var number = Number(value); //转型函数
+			console.log(typeof number);//number
+			
+			var obj = new Number(value);//构造函数
+			console.log(typeof obj);//object
+			
+			var booleanObject = new Boolean(true);
+//			alert(booleanObject.valueOf()); //true;
+		</script>
+	</body>
+</html>

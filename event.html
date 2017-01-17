@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h1 id="title" onclick="sayHi(event)">
+			hello
+		</h1>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script>
+//		var node = document.getElementById('title');
+//			function sayGoodbye(node) {
+//				alert("Goodbye");
+//				node.innerHTML="Goodbye";
+//				node.onclick = function(){
+//					alert('hello');
+//					this.innerHTML="hello";		
+////					this.onclick = null;
+//				}
+//				
+//			}
+			
+			function sayGoodbye(e){
+				$("#title").html("hello");
+				console.log("hello");
+				$("#title").click(function(e){
+					$("#title").html("Goodbye");
+					console.log("Goodbye");
+					$("#title").off("click");
+				})
+			}
+//			$('#title').click(function(){
+//				var content = $('#title').html();
+//				if(content == 'hello'){
+//				   $('#title').html('GoodBye');
+//				}else{
+//					$('#title').html('hello');
+//				}
+//				$('#title').off('click');
+//			})
+			//			console.log(info)
+			//			function test(func,wait,immediate){
+			////				var timeout;
+			////				var call= c&!timeout;
+			//				return function(){
+			////					timeout=null;				
+			//					setTimeout(func,wait);
+			//				}
+			//			}
+			//			function realFun(){
+			//				console.log("success");
+			//			}
+			//			test(realFun,500);
+			// 简单的防抖动函数
+			function debounce(func, wait) {
+				// 定时器变量
+				var timeout;
+				return function() {
+					// 每次触发 scroll handler 时先清除定时器
+					//					clearTimeout(timeout);
+					// 指定 xx ms 后触发真正想进行的操作 handler
+					timeout = setTimeout(func, wait);
+				};
+			};
+			// 实际想绑定在 scroll 事件上的 handler
+			function realFunc() {
+				console.log("success");
+			}
+			Function.prototype.type = function() {
+					console.log('from-proto');
+				}
+				//			debounce(realFunc,1000);
+			var demo = new debounce(realFunc, 500);
+//			demo();
+			//			debounce(realFunc,500);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			try{
+				try{
+					throw new Error("oops");
+				}finally{
+					console.log("finally");
+				}
+			}catch(ex){
+				console.error("outer",ex.message);
+			}
+		</script>
+	</body>
+</html>

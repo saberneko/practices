@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var man={
+				weibo:'@Bosn',
+				$age:null,
+				get age(){
+					if(this.$age == undefined){
+						return new Date().getFullYear()-1988;
+					}else{
+						return this.$age;
+					}
+				},
+				set age(val){
+					val= +val;
+					if(!isNaN(val)&&val>0&&val<150){
+						this.$age = +val;
+					}else{
+						throw new Error('Incorret val =' + val);
+					}
+				}
+			}
+			
+			console.log(man.age);//28
+			man.age = 100;
+			console.log(man.age);//100
+			man.age = 'abc';//Incorret val = NaN
+			
+		</script>
+	</body>
+</html>

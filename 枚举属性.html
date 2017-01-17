@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var o = {x:1,y:2,z:3};
+			'toString' in o;//true
+			o.propertyIsEnumerable('toString');//false
+			var key;
+			for(key in o){
+				console.log(key);//x,y,z	
+			}
+			
+			var obj = Object.create(o);
+			obj.a=4;
+			var key;
+			for(key in obj){
+				console.log(key);//a,x,y,z for in 会输出原型链上可枚举的属性
+			}
+			
+			for(key in obj){
+				if(obj.hasOwnProperty(key)){
+					console.log(key);//a 过滤原型链上的属性，只遍历对象上的属性
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,200 @@
+*{
+	margin:0;
+	padding: 0;
+}
+.demo-one{
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-top: 50px solid rgb(100,0,0);
+	border-right: 50px solid rgb(0,100,0);
+	border-bottom: 50px solid rgb(0,0,100);
+	border-left: 50px solid rgb(50,0,200);
+	box-sizing: border-box;
+}
+.demo-two{
+	/*position: relative;*/
+	width: 100px;
+	height: 100px;
+	border-top: 100px solid rgb(100,0,0);
+	border-right: 100px solid transparent;
+	/*border-bottom: 0px solid transparent;*/
+	/*border-left: 50px solid transparent;*/
+	box-sizing: border-box;
+}
+.demo-three{
+	/*position: relative;*/
+	width: 100px;
+	height: 100px;
+	border-top: 100px solid rgb(100,0,0);
+	border-right: 50px solid transparent;
+	/*border-bottom: 0px solid transparent;*/
+	border-left: 50px solid transparent;
+	box-sizing: border-box;
+}
+.demo-four{
+	/*position: relative;*/
+	width: 100px;
+	height: 100px;
+	border-top: 50px solid rgb(100,0,0);
+	border-right: 50px solid transparent;
+	/*border-bottom: 60px solid transparent;*/
+	border-left: 0px solid transparent;
+	box-sizing: border-box;
+}
+.demo-five{
+	/*position: relative;*/
+	width: 100px;
+	height: 100px;
+	border-top: 50px solid rgb(100,0,0);
+	border-right: 100px solid transparent;
+	/*border-bottom: 60px solid transparent;*/
+	border-left: 0px solid transparent;
+	box-sizing: border-box;
+}
+.border-horizontal{
+	/*position: relative;*/
+	width:65px;
+	height:120px;
+	border-top: 20px solid black;
+	border-left: 20px solid black;
+	border-right: 20px solid transparent;
+	box-sizing: border-box;
+	transform: translate(100px,100px);
+}
+.border-vertical{
+	/*position: relative;*/
+	width:160px;
+	height:65px;
+	border-right: 20px solid black;
+	border-bottom: 20px solid black;
+	border-top: 20px solid transparent;
+	box-sizing: border-box;
+	transform: translate(100px,50px);
+}
+.hook{
+	/*position:relative;*/
+	width:90px;
+	height: 100px;
+	border-top:40px solid black;
+	border-top-left-radius: 90px 80px;
+	box-sizing: border-box;
+	transform: translate(150px,-80px);
+}
+.triangel{
+	/*position: relative;*/
+	width:60px;
+	height: 100px;
+	border-top: 50px solid transparent;
+	border-left:60px solid black;
+	border-bottom: 50px solid transparent;
+	box-sizing: border-box;
+	transform: translate(235px,-206px);
+}
+.round{
+	width: 50px;
+	height: 50px;
+	border:8px solid black;
+	border-radius: 50px;
+	box-sizing: border-box;
+}
+.bar{
+	width: 50px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: black;
+	transform:rotate(45deg) translate(20px,-18px);
+}
+.box-shadow{
+	display: block;
+	position: relative;
+	left: 100px;
+	width: 100px;
+	height: 150px;
+	padding: 10px;
+	border: 10px solid black;
+	border-radius: 20px;
+	box-sizing: border-box;
+	box-shadow: 0 0 0 10px brown,
+				0 0 0 20px yellow,
+				0 0 0 30px orange;
+}
+.outline{
+	display: block;
+	left: 100px;
+	top:100px;
+	width: 100px;
+	height: 150px; 
+	border: 10px solid black;
+	box-sizing: border-box;
+	outline: 10px solid brown;
+	outline-offset: -20px;
+}
+.radial-gradient{
+	display: block;
+	position: relative;
+/*	left: 100px;
+	top:200px;*/
+	width: 100px;
+	height: 100px;
+	/*border: 10px solid brown;*/
+	background-image: radial-gradient(circle at 100px 0 , transparent 0%, transparent 72%, #0000FF 72%,#0000FF 100%);
+}
+
+.foot{
+	position: relative;
+	display: block;
+}
+.box { 
+   display: inline-block; 
+   background: red; 
+   width: 100px; 
+   height: 100px; 
+   float: left; 
+   margin: 20px; 
+   color: white; 
+}
+
+#one{
+	position:relative;
+	width: 500px;
+}
+#two { 
+   position: absolute; /*相对于最近一级的 定位不是static的父元素定位,这里不存在最近一级的父元素，所以相对于body定位*/
+   /*position: relative;*/
+   top: 20px; 
+   left: 20px; 
+   background: blue;
+}
+
+.block{
+	display: inline-block;
+	/*position: relative;*/
+	float: left;
+	margin: 50px;
+	width: 40%;
+	height: 100px;
+	background: brown;
+}
+
+#third{
+	background: yellow;
+	position: relative;/*无侵入定位*/
+	/*top:-100px;*/
+}
+#four{
+	background: red;
+	/*margin-top: -100px;*/
+	/*带动其他元素位置移动*/
+}
+#five{
+	/*position: relative;*/
+	top:-30px;
+	left: 600px;
+	background: orange;
+}
+#six{
+	/*position: relative;*//*relative会提高层级z-index慎用*/
+	margin-left: -500px;
+	background: pink;
+}

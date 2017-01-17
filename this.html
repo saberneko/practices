@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1">我是一个div</div>
+	<script type="text/javascript">
+		//对象原型链上的this
+		// var o ={f:function(){return this.a+this.b;}};
+		// var p = Object.create(o);//创建空对象p并将其原型指向o
+		// p.a=1;
+		// p.b=4;
+		// console.log(p.f());//5
+
+		// //call/apply
+		// function add(c,d){
+		// 	return this.a+this.b+c+d;
+		// }
+		// var o={a:1,b:3};
+		// add.call(o,5,7);//16
+		// add.apply(o,[10,20]);//34
+		// function bar(){
+		// 	console.log(Object.prototype.toString.call(this));
+		// }
+		// bar.call(7);
+
+		// /**
+		//  * es5 .bind() ie9+  即便作为新对象的属性调用，其中this也指向传入的参数对象而不是新对象
+		//  */
+		// function f(){
+		// 	return this.a;
+		// }
+		// var g = f.bind({a:"test"});
+		// console.log(g());//test
+
+		// var o ={a:37,f:f,g:g};
+		// console.log(o.f(),o.g());//37,test
+
+		// this.x=9;
+		// var module = {
+		// 	x:81,
+		// 	getX:function(){return this.x;}
+		// };
+		// module.getX();//81
+
+		// var getX=module.getX;
+		// getX();//9
+
+		// var boundGetX=getX.bind(module);
+		// boundGetX();//81
+
+		// /**
+		//  * bind与currying
+		//  */
+		// function getConfig(colors,size,otherOptions){
+		// 	console.log(colors,size,otherOptions);
+		// }
+
+		// var defaultConfig = getConfig.bind(null,"#CC0000","1024*768");
+		// defaultConfig("123");
+
+		// /**
+		//  * bind与new
+		//  */
+		// function foo(){
+		// 	this.b=100;
+		// 	return this.a;
+		// }
+
+		// var func = foo.bind({a:1});
+		// console.log(func());//1
+		// var fuc = new func();
+		// console.log(fuc);//100
+
+		// function Person(){
+		// 	var self = this;
+		// 	self.age = 0;
+		// 	setInterval(function(){
+		// 		self.age++;
+		// 	}, 1000);
+		// }
+		// // window.Person();
+		// var p = new Person();
+
+		// var a = ["1","2","3","4"];
+		// for(var j = 0;j<4;j++){
+		// 	(function(i){
+		// 		setTimeout(function(){
+		// 			console.log(a[i]);
+		// 		}, (i+1)*1000);
+		// 	})(j);
+		// }
+
+		// document.getElementById = (function(func){
+		// 	return function(){
+		// 		return func.apply(document,arguments);
+		// 	}
+		// })(document.getElementById);
+
+		// var getId = document.getElementById;
+		// var div = getId('div1');
+		// alert(div.id);
+		
+
+		/*只要函数被赋给另一个变量，this指向就会变；
+		  A.describe被赋值给f，内部的this就指向f运行时的所在对象（环境）
+		  本例为顶层对象window
+		*/
+		var A = {
+			name: '张三',
+			describe: function(){
+				return '姓名：' + this.name;
+			}
+		};
+		var name = '李四';
+		var f = A.describe;
+		f() //姓名：李四
+
+		/*构造函数，this指向示例对象*/
+		var Obj = function(p){
+			this.p = p;
+		}
+		Obj.prototype.m = function(){
+			return this.p;
+		}
+		var o = new Obj('Hello World!');
+		o.p //hello world
+		o.m()
+
+		/*函数的方法调用，this指向代码块当前所在对象*/
+		var obj = {
+			name:'neko',
+			foo: function(){
+				console.log(this.name);
+			}
+		}
+		obj.foo();
+		document.getElementById('div1').addEventListener('click',obj.foo);
+		// obj.foo();
+
+		// (obj.foo)();
+
+		// (obj.foo = obj.foo)();
+
+		// (false || obj.foo)();
+
+		// (1, obj.foo)();
+
+		// var ob = obj.foo;
+		// ob();
+		// 
+		var m = {
+			f1: function(){
+				console.log(this);
+				// var that = this
+				var f2 = function(){
+					console.log(this);
+					// console.log(that);
+				}();//立即执行函数
+			}
+		}
+		m.f1();		
+		//Object
+		//Window		
+		var temp = function(){
+			console.log(this)
+		}
+
+		var msub = {
+			f1: function(){
+				console.log(this);
+				var f2 = temp();//相当于temp(),执行函数
+				// function temp(){
+				// 	console.log(this);
+				// }
+				// temp();
+				// 
+				// temp.call(this); //改变this指向当前对象
+			}
+		}
+		msub.f1();
+		//Object
+		//Window
+
+		//forEach内层this不指向外层
+		var o = {
+			v: 'hello',
+			p: ['a1','a2'],
+			f: function(){
+				this.p.forEach(function(item){
+					console.log(this.v + ' ' + item);
+				},this);//传入this指向对象o，从而固定callback的运行环境，
+			}
+		}
+
+		o.f();
+
+	</script>	
+</body>
+</html>

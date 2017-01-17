@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body {
+		margin:0;
+		padding:0;
+		border:2px solid #f08080;
+		width:1000px;
+		height:1000px;
+	}
+	span {
+		display: block;
+		position:fixed;
+	}
+	.one {
+		top:20px;
+		left:50px;
+	}
+	.two {
+		top:20px;
+		left:450px;
+	}
+	.three {
+		top:100px;
+		left:50px;
+	}
+	.four {
+		top:100px;
+		left:450px;
+	}
+	</style>
+</head>
+<body id = 'body'>
+	<span class="one">ClientX:<input type="text"/></span>
+	<span class="two">ClientY:<input type="text"/></span>
+	<span class="three">ScreenX:<input type="text"/><span>
+	<span class="four">ScreenY:<input type="text"/></span>
+</body>
+<script type="text/javascript">
+	const inputs = document.getElementsByTagName('input');
+	document.getElementById('body').addEventListener('mousedown', e => {
+		console.log('success');
+		inputs[0].value = e.clientX;
+		inputs[1].value = e.clientY;
+		inputs[2].value = e.screenX;
+		inputs[3].value = e.screenY;
+		}
+	)
+</script>
+</html>

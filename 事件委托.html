@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container .item:nth-child(even){
+			background-color: red
+		}
+		.targetItem {
+			border: 2px solid black;
+		}
+	</style>
+</head>
+<body>
+	<ul id="parent-List">
+		<li class="item">A</li>
+		<li class="item">B</li>
+		<li class="item">C</li>
+		<li class="item">D</li>
+		<li class="item">E</li>
+	</ul>
+	<div id="myDiv" class="container">
+		<div class="item">classA</div>
+		<div class="item">classB</div>
+		<div class="item targetItem">classC</div>
+		<div class="item">classD</div>	
+	</div>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+		document.getElementById("parent-List").addEventListener("click",function(e){
+			if(e.target&&e.target.nodeName=="LI"){
+				console.log("target has been clicked");
+			}
+		});
+
+		document.getElementById("myDiv").addEventListener("click",function(e){
+			if(e.target&&e.target.nodeName=="DIV"){
+				var classes = e.target.className.split(" ");
+				if(classes){
+					for(var i = 0;i<classes.length;i++){
+						if(classes[i]=="targetItem"){
+							console.log("target has been clicked");
+						}
+					}
+				}
+			}
+		})
+
+		$('ul.container').on('click','li.item',function(e){
+			console.log("clicked");
+		})
+
+	</script>
+</body>
+</html>

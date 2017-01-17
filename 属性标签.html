@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		var person={};
+			Object.defineProperties(person,{
+				title:{value:'ff',enumerable:true},
+				corp:{value:'BABA',enumerable:true},
+				salary:{value:50000,enumerable:true,writable:true},
+				luck:{
+					get:function(){
+						return Math.random()>0.5?"good":"bad";
+					}
+				},
+				promote:{
+					set:function(level){
+						this.salary*=1+level*0.1;
+					}
+				}
+			});
+			console.log(Object.getOwnPropertyDescriptor(person,'salary'));//浏览器中查看
+			console.log(person.salary);//50000
+			person.promote =2;
+			console.log(person.salary);//60000
+		</script>
+	</body>
+</html>

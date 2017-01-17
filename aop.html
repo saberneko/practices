@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="button"></button>
+		<script>
+//			Function.prototype.before = function(beforeIn){
+//				var _self = this;
+//				alert(_self);
+//				return function(){
+//					alert(this);
+//					beforeIn.apply(this,arguments);
+//					return _self.apply(this,arguments);
+//				}
+//			}
+//			
+//			document.getElementById = document.getElementById.before(function(){
+//				alert(1);
+//			});
+//			var button = document.getElementById('button');
+//			
+//			console.log(button);
+
+			var _getElementById = document.getElementById;
+			
+			document.getElementById = function(){
+//				alert(1);
+				return _getElementById.apply(this,arguments);
+			}
+			
+			var button = document.getElementById('button');
+			console.log(button);
+			
+			
+			var before = function(fn,beforefn){			
+				return function(){
+					beforefn.apply(this,arguments);
+					return fn.apply(this,arguments);
+				}
+			}
+			
+			var a = before(
+				function(){alert(3)},
+				function(){alert(2)}
+			);
+			
+			a = before(a,function(){alert(1);});
+//			a();
+			
+		</script>
+	</body>
+</html>
