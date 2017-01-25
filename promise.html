@@ -50,12 +50,12 @@
 		// Resolved
 
 		// 异步加载图片
-		function loadImageAsyc(url,callback) {
+		function loadImageAsyc(url) {
 			return new Promise((resolve, reject) => {
 				let image = new Image();
 
 				image.onload = () => {
-					resolve(image,callback);
+					resolve(image);
 				};
 
 				image.onerror = () => {
@@ -67,10 +67,10 @@
 		}
 
 		function imgLoaded() {
-			alert(this.width);
+			console.log(this.width);
 		}
 
-		loadImageAsyc('http://img1.imgtn.bdimg.com/it/u=96434066,4175133017&fm=214&gp=0.jpg',imgLoaded).then((image,callback) => {
+		loadImageAsyc('http://img1.imgtn.bdimg.com/it/u=96434066,4175133017&fm=214&gp=0.jpg').then((image) => {
 				// document.body.appendChild(image);
 				callback.call(image);
 
