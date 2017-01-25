@@ -69,9 +69,9 @@
 		}
 
 		// 闭包应用——封装
-		var module1 = (function(){
-			var _userId = 2345;
-			var _typeId = "id";
+		var module1 = (function(userId,typeId){
+			var _userId = userId;
+			var _typeId = typeId;
 			var ex = {};
 
 			function converter(userId){
@@ -86,12 +86,28 @@
 				return _typeId;
 			};
 
-			return ex;//将局部对象暴露出去
-		})();
+			return ex;
+		})('test1','text');
 
-		console.log(Object.prototype.toString.call(module1.getUserId));
+		// console.log(Object.prototype.toString.call(module1.getUserId));
 		console.log(module1.getUserId());
-		console.log(module1.getTypeId());//通过调用对象的方法访问变量
+		console.log(module1.getTypeId());
+
+		function getTypeId() {
+			return this._typeId;
+		}
+
+		function Module2(userId,typeId) {
+			this._userId = userId;
+			this._typeId = typeId;
+			this.getUserId = function() {
+				return  this._userId + '&' + getTypeId.call(this);
+			}
+		}
+
+		var mod = new Module2('test2','json');
+
+		console.log(mod.getUserId());
 
 		var singleton = function () {
 			var privateVariable = "private";

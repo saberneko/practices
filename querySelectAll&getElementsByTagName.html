@@ -7,7 +7,7 @@
 	</head>
 
 	<body>
-		<ul>
+		<ul id="ul">
 			<li></li>
 			<li></li>
 			<li></li>
@@ -21,11 +21,23 @@
 //				ul.appendChild(document.createElement("li"));
 //			}
 			// Demo 2
-			var ul = document.getElementsByTagName('ul')[0],
+/*			var ul = document.getElementsByTagName('ul')[0],
 				lis = ul.getElementsByTagName("li");
 			for (var i = 0; i < lis.length; i++) {
 				ul.appendChild(document.createElement("li"));
 			}
+*/		
+			console.time('getElementById');
+			for (var i = 0; i < 100000; i++) {
+	  			document.getElementById("ul");
+			}
+			console.timeEnd('getElementById');
+
+			console.time('querySelector');
+			for (var i = 0; i < 100000; i++) {
+  				document.querySelector("#ul");
+			}
+			console.timeEnd('querySelector');
 		</script>
 	</body>
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			width:2000px;
+			height: 2000px;
+		}
+		input{
+			position: fixed;
+		}
+		.inputB {
+			left:200px;
+		}
+	</style>
+</head>
+<body>
+	X:<input class="inputA" id="horizantal_axis" type="text" name="horizantal">
+	Y:<input class="inputB" id="vertical_axis" type="text" name="vertical">
+	<script type="text/javascript">
+		function mousePosition(ev) {
+			if(ev.pageX || ev.pageY) {
+				return {
+					x: ev.pageX,
+					y: ev.pageY
+				};
+			}
+			return {
+				x: ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+				y: ev.clientY + document.body.scrollTop - document.body.clientTop
+			};
+		}
+		function mouseMove(ev) {
+			ev = ev || window.event;
+			var mousePos = mousePosition(ev),
+				inputArr = document.getElementsByTagName('input');
+			inputArr[0].value = mousePos.x;
+			inputArr[1].value = mousePos.y;
+
+		}
+		document.onmousemove = mouseMove;
+	</script>
+</body>
+</html>

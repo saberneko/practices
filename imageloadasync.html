@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id='input1' type="button" name="loadImage" onclick="loadImage('images/cbd.jpg',imgLoaded)" />
+	<script type="text/javascript">
+		function imgLoaded() {
+			alert(this.width);
+		}
+
+		function loadImage(url, callback) {
+			let img = new Image();
+			img.src = url;
+			if(img.complete) {
+				callback.call(img);
+				return;
+			}
+			img.onload = function() {
+				callback.call(img);
+			}
+		}
+
+		// document.getElementsByTagName('input')[0].addEventListener('click',loadImage('images/cbd.jpg',imgLoaded));
+	</script>
+</body>
+</html>
