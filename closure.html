@@ -93,16 +93,14 @@
 		console.log(module1.getUserId());
 		console.log(module1.getTypeId());
 
-		function getTypeId() {
-			return this._typeId;
+		function getUserId() {
+			return this._userId;
 		}
 
 		function Module2(userId,typeId) {
 			this._userId = userId;
 			this._typeId = typeId;
-			this.getUserId = function() {
-				return  this._userId + '&' + getTypeId.call(this);
-			}
+			this.getUserId = getUserId;
 		}
 
 		var mod = new Module2('test2','json');

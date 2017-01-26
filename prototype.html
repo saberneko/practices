@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Person(name,age,gender) {
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
+
+		Person.prototype.career = 'software engineer';
+		Person.prototype.sayName = function () {
+			console.log(this.name);
+		}
+
+		person1 = new Person('neko','24','female');
+		person2 = new Person('Richard','23','male');
+
+		Object.defineProperty(person1, 'height', {
+			configurable: true,
+			enumerable: false,
+			value: 162
+		})
+
+		person1.sayName(); //neko
+
+		/*person1的[[Prototype]]指向构造函数Person的原型*/
+		console.log(Person.prototype.isPrototypeOf(person1)); //true
+		/*Object.getPrototypeOf(obj)取得对象的原型*/
+		console.log(Object.getPrototypeOf(person1) == Person.prototype); //true
+		/*实例共享同一原型链上的属性和方法*/
+		console.log(person1.sayname == person2.sayname); //true
+
+		/*obj.hasOwnProperty(prop)判断一个属性是存在于实例中(true)还是原型中(false)*/
+		console.log(person1.hasOwnProperty('name')) //true
+		console.log(person1.hasOwnProperty('career')) //false
+		/*prop in obj 实例和原型中的属性均能访问到*/
+		console.log('name' in person1); //true
+
+		/*判断属性是否存在原型中*/
+		function hasPrototypeProperty(object, name) {
+			return !object.hasOwnProperty(name) && (name in object);
+		}
+
+		console.log(hasPrototypeProperty(person1, 'name')) // false
+		console.log(hasPrototypeProperty(person1, 'sayName'))// true
+
+		/*Object.getOwnPropertyDescriptor(obj, prop)返回实例属性的属性描述符(property descriptor)*/ 
+		console.log(Object.getOwnPropertyDescriptor(person1, 'name')) 
+		// {value:'neko',configurable:true,enumerable:true,writable:true}
+		/*取得原型属性的描述符*/
+		console.log(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(person1), 'sayName')) 
+		// {configurable:true,enumerable:true,writable:true}
+
+		/*for-in 实例和原型里可枚举(enumerated)属性*/
+		var o = {
+			toString: function() {
+				return 'My Object';
+			}
+		}
+
+		for(var prop in o) {
+			if (prop == 'toString') {
+				console.log('found toString');
+			}
+		}
+
+		for(var prop in person1) {
+			console.log(prop) // name, age, gender, career, sayName
+		}
+
+		/*Object.keys(obj)返回一个所有实例中可枚举属性的字符串数组*/
+		console.log(Object.keys(person1)); // ['name', 'age', 'gender']
+
+		var keys = Object.keys(Person.prototype);
+		console.log(keys); // ['career', 'sayName']
+
+		/*Object.getOwnPropertyNames(obj)所有实例属性*/
+		console.log(Object.getOwnPropertyNames(person1)); 
+		//['name', 'age', 'gender', height]
+
+		console.log(Object.getOwnPropertyNames(Person.prototype))
+
+	</script>
+</body>
+</html>
