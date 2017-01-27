@@ -10,6 +10,7 @@
 			this.name = name;
 			this.age = age;
 			this.gender = gender;
+			this.friends = [];
 		}
 
 		Person.prototype.career = 'software engineer';
@@ -19,6 +20,11 @@
 
 		person1 = new Person('neko','24','female');
 		person2 = new Person('Richard','23','male');
+
+		// person1.friends.push('Ryan');
+
+		console.log(person1.friends);
+		console.log(person2.friends);
 
 		Object.defineProperty(person1, 'height', {
 			configurable: true,
@@ -34,6 +40,7 @@
 		console.log(Object.getPrototypeOf(person1) == Person.prototype); //true
 		/*实例共享同一原型链上的属性和方法*/
 		console.log(person1.sayname == person2.sayname); //true
+		console.log(person1.friends == person2.friends) //false
 
 		/*obj.hasOwnProperty(prop)判断一个属性是存在于实例中(true)还是原型中(false)*/
 		console.log(person1.hasOwnProperty('name')) //true
@@ -84,6 +91,7 @@
 		//['name', 'age', 'gender', height]
 
 		console.log(Object.getOwnPropertyNames(Person.prototype))
+		// ["constructor", "career", "sayName"]
 
 	</script>
 </body>
