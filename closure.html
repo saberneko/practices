@@ -151,6 +151,76 @@
 		// var func = add();
 		// func();// 2
 		// func();// 3
+
+		for (var i = 0; i < 3; i++) {
+			setTimeout(((i) => {
+				return function() {
+					console.log(i);
+				}
+			})(i), 0);
+			console.log(i);
+		} //0 1 2 0 1 2
+
+		for (var i = 0; i < 3; i++) {
+			setTimeout(((i) => {
+				console.log(i);
+			})(i), 0);
+			console.log(i);
+		}// 0 0 1 1 2 2 
+
+		for (let i = 0; i < 3; i++) {
+			setTimeout(() => {
+				console.log(i);
+			}, 0)
+			console.log(i);
+		}// 0 1 2 0 1 2
+
+		// 模块模式
+		var application = function() {
+			//私有变量和函数
+			var components = new Array();
+			//初始化
+			components.push(new Module2);
+			//公共
+			return {
+				getComponentCount: function() {
+					return components.length;
+				},
+
+				registerComponents: function(component) {
+					if(typeof components == "object") {
+						components.push(component);
+					}
+				}
+			}
+		}();
+
+		console.log("返回已注册的组件数目：" + application.getComponentCount());
+
+		//增强的模块模式
+
+		var application_Up = (function() {
+			//私有变量和函数
+			var components = new Array();
+			//初始化
+			components.push(new Module2);
+			//创建application的一个局部副本
+			var app = new Module2();
+			//公共接口
+			app.getComponentCount = function() {
+				return components.length;
+			};
+
+			app.registerComponents = function(component) {
+				if(typeof component == "object") {
+					components.push(component);
+				}
+			};
+			return app;
+		})();
+
+		application_Up.registerComponents(new Module2);
+		console.log("返回已注册的组件数目：" + application_Up.getComponentCount());
 	</script>
 </body>
 </html>
