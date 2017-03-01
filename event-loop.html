@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			background: #444444;
+			color:white;
+			font: 15px/1.51 system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+			margin:0 auto;
+			max-width: 600px;
+			min-height: 1000vh;
+		}
+		
+		.reset {
+			position: fixed;
+			color:white;
+			text-decoration: none;
+			border: 1px solid white;
+			padding: 10px 20px;
+			background:rgba(0,0,0,.1);
+		}
+
+		#counter {
+			position: fixed;
+			top: 100px;
+			left: 45%;
+			font-size: 50px;
+		}
+	</style>
+</head>
+	<h1>Number of scroll events</h1>
+	<a href="#" class="reset">Reset</a>
+	<div id="counter">0</div>
+<body>
+	<script type="text/javascript" src="js/scroll.js"></script>
+	<script>
+		// synchroous
+		[1,2,3,4].forEach((i) => {
+			console.log(i);
+		})
+
+		// Asynchronous
+		function aysnForEach(array, callback) {
+			array.forEach((i) => {
+				setTimeout(callback(i), 0);
+			})
+		}
+
+		aysnForEach([1,2,3,4], (i) => {
+			console.log(i);
+		})
+	</script>
+</body>
+</html>

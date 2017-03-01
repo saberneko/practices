@@ -21,10 +21,11 @@
 		person1 = new Person('neko','24','female');
 		person2 = new Person('Richard','23','male');
 
-		// person1.friends.push('Ryan');
+		/*修改构造函数的属性和方法，不会影响其他实例。由于原型的共享性，修改原型的属性和方法会影响所有实例*/
+		person1.friends.push('Ryan');
 
-		console.log(person1.friends);
-		console.log(person2.friends);
+		console.log(person1.friends); // ['Ryan']
+		console.log(person2.friends); // []
 
 		Object.defineProperty(person1, 'height', {
 			configurable: true,
@@ -93,6 +94,38 @@
 		console.log(Object.getOwnPropertyNames(Person.prototype))
 		// ["constructor", "career", "sayName"]
 
+		/*寄生构造函数模式*/
+		function SpecialArray() {
+
+			// 创建数组
+			var values = new Array();
+
+			// 添加值
+			values.push.apply(values, arguments);
+
+			// 添加方法
+			values.toPipedString = function () {
+				return this.join('|');
+			};
+
+			// 返回数组
+			return values;
+		}
+
+		var colors = new SpecialArray('red', 'blue', 'green');
+		console.log(colors.toPipedString());
+
+		/*function SpecialArraySub(args) {
+			this.values = args;
+		}
+
+		SpecialArraySub.prototype.toPipedString = function() {
+			return this.values.join('|')
+		}
+
+		var ages = new SpecialArraySub(['1','23','98']);
+		console.log(ages.toPipedString()); // 1|23|98*/
+		
 	</script>
 </body>
 </html>

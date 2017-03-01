@@ -31,6 +31,7 @@
 		document.getElementById("parent-List").addEventListener("click",function(e){
 			if(e.target&&e.target.nodeName=="LI"){
 				console.log("target has been clicked");
+				console.log(e.target, e.currentTarget);
 			}
 		});
 

@@ -43,7 +43,7 @@ a {
 	float: left;
 	padding: 0 20px;
 	padding-bottom: 5px;
-	border-bottom: 2px solid transparent;
+	border-bottom: 2px solid transparent; a
 	transition: border-bottom 300ms ease-in 150ms;
 	-webkit-transition: border-bottom 300ms ease-in 150ms;
 }

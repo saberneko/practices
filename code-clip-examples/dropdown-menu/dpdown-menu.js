@@ -10,6 +10,7 @@ $dropdownBtn.addEventListener('click', (e) => {
 	if(e.target){
 		$dropdownMenu.classList.toggle('in');
 	}
+	console.log(this);
 	e.stopPropagation();
 })
 $dropdownMenu.addEventListener('click', (e) => {
