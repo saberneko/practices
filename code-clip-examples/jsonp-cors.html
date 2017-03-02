@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//原理：根据页面用script标签的src属性载入js文件不受跨域限制的原理，服务器端设法把数据装入js格式的文件里，客户端动态插入script标签，通过script载入一个js文件，载入成功后会执行url参数中指定的函数，并且会把我们需要的json数据（由服务器端返回）作为参数传入。
+
+		var studentInfoHandler = function(data){
+			console.log('姓名:' + data.name + ";班级:" + data.class);
+		}
+ 		
+ 		var studentID= '1311040103'
+
+		function createJs(url, tag, callback) {
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = url + "?infotag=" + tag + "&callback=" + callback;
+			document.getELementsByTagName('head')[0].appendChild(script);
+		}
+
+		createJs('http://flightQuery.com/jsonp/studentInfo.js', studentID, studentInfoHandler);
+
+	</script>
+</body>
+</html>
