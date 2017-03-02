@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var state = 0;
+		function crossDomain(url, fn) {
+			iframe = document.createElement('iframe');
+			iframe.style.display = "none";
+
+			function loadfn() {
+				if(state === 1){
+					fn(iframe.contentWindow.name);
+					//获取数据后销毁iframe，释放内存；同时确保安全（不被其他域frame js访问）
+					iframe.contentWindow.document.write('');
+					iframe.contentWindow.close();
+					document.body.removeChild(iframe);
+				}else if(state === 0){
+					state = 1;
+					iframe.contentWindow.location = 'http://localhost:81/cross-domain/proxy.html' //代理地址
+				}
+			}
+
+			if(iframe.attachEvent){
+				iframe.attachEvent('onload', loadfn);
+			}else{
+				iframe.onload = loadfn;
+			}
+
+			iframe.src = url;
+
+			document.body.appendChild(iframe);
+		}
+		//服务器地址
+		var url = 'http://localhost:8080/data.php'; 
+		crossDomain(url, function(){
+			var data = JSON.parse(iframe.contentWindow.name);
+			alert(data);
+		})
+	</script>
+</body>
+</html>
