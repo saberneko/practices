@@ -6,6 +6,7 @@
 </head>
 <body>
 	<script type="text/javascript">
+		//运用window.name的特性，即在一个窗口的生命周期里，窗口载入过的所有页面共享一个window.name
 		var state = 0;
 		function crossDomain(url, fn) {
 			iframe = document.createElement('iframe');
